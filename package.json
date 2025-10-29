@@ -1,0 +1,33 @@
+{
+  "name": "prompt-editor",
+  "version": "1.0.0",
+  "description": "An Electron application for creating and editing prompt templates.",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build:css": "npx @tailwindcss/cli -i ./styles.css -o ./output.css --watch",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hirokita117/prompt-editor.git"
+  },
+  "keywords": [
+    "electron",
+    "prompt",
+    "template"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hirokita117/prompt-editor/issues"
+  },
+  "homepage": "https://github.com/hirokita117/prompt-editor#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.56.1",
+    "@tailwindcss/cli": "^4.1.16",
+    "electron": "^39.0.0",
+    "playwright": "^1.56.1",
+    "tailwindcss": "^4.1.16"
+  }
+}
