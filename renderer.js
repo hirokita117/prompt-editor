@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const promptTemplateEl = document.getElementById('prompt-template');
   const variablesFormEl = document.getElementById('variables-form');
   const previewEl = document.getElementById('preview');
+  const copyButton = document.getElementById('copy-button');
 
   let variables = {};
 
@@ -88,6 +89,31 @@ document.addEventListener('DOMContentLoaded', () => {
   promptTemplateEl.addEventListener('input', () => {
     renderVariablesForm();
     updatePreview();
+  });
+
+  // Copy to clipboard functionality
+  copyButton.addEventListener('click', async () => {
+    const template = promptTemplateEl.value;
+    const finalPrompt = replaceVariables(template, variables);
+    
+    try {
+      await navigator.clipboard.writeText(finalPrompt);
+      
+      // Visual feedback
+      const originalText = copyButton.querySelector('span').textContent;
+      copyButton.querySelector('span').textContent = 'コピーしました！';
+      copyButton.classList.remove('bg-indigo-600', 'hover:bg-indigo-700');
+      copyButton.classList.add('bg-green-600', 'hover:bg-green-700');
+      
+      setTimeout(() => {
+        copyButton.querySelector('span').textContent = originalText;
+        copyButton.classList.remove('bg-green-600', 'hover:bg-green-700');
+        copyButton.classList.add('bg-indigo-600', 'hover:bg-indigo-700');
+      }, 2000);
+    } catch (err) {
+      console.error('コピーに失敗しました:', err);
+      alert('コピーに失敗しました。もう一度お試しください。');
+    }
   });
 
   // Initial render
