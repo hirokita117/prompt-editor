@@ -8,6 +8,11 @@ test('Electron app screenshot', async () => {
   // Get the first window
   const window = await electronApp.firstWindow();
 
+  // Fill the textarea and move cursor to the beginning
+  const promptTemplate = await window.locator('#prompt-template');
+  await promptTemplate.fill('This is a long text to test cursor visibility.');
+  await promptTemplate.press('Home');
+
   // Take screenshot
   await window.screenshot({ path: 'screenshot.png' });
 
