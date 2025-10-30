@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let variables = {};
 
   function extractVariables(template) {
-    const regex = /(?<!\\){([a-zA-Z0-9]+)}/g;
+    const regex = /(?<!\\){([a-zA-Z0-9_-]+)}/g;
     const extracted = new Set();
     let match;
     while ((match = regex.exec(template)) !== null) {
